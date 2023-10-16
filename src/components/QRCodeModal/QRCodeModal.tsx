@@ -10,18 +10,38 @@ import {
 import { QRCodeModalBody } from './QRCodeModalBody';
 import { useMemo } from 'react';
 import { ViewIcon } from '@chakra-ui/icons';
+import queryString from 'query-string';
 
 export type QRCodeModalProps = {
   data: string;
+  header: string;
+  footer: string;
   onClose: () => void;
   isOpen: boolean;
 };
 
-const createURL = (data: string) =>
-  encodeURI(`${import.meta.env.BASE_URL}#data?d=${data}`);
+const createURL = (d: string, h: string, f: string) =>
+  queryString.stringifyUrl(
+    {
+      url: `${import.meta.env.BASE_URL}#data`,
+      query: { d, h, f },
+    },
+    {
+      skipEmptyString: true,
+    }
+  );
 
-export const QRCodeModal = ({ data, onClose, isOpen }: QRCodeModalProps) => {
-  const dataUrl = useMemo(() => createURL(data), [data]);
+export const QRCodeModal = ({
+  data,
+  onClose,
+  isOpen,
+  header,
+  footer,
+}: QRCodeModalProps) => {
+  const dataUrl = useMemo(
+    () => createURL(data, header, footer),
+    [data, header, footer]
+  );
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
