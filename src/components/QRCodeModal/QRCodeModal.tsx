@@ -18,7 +18,7 @@ export type QRCodeModalProps = {
 };
 
 const createURL = (data: string) =>
-  encodeURI(`${import.meta.env.BASE_URL}data?d=${data}`);
+  encodeURI(`${import.meta.env.BASE_URL}#data?d=${data}`);
 
 export const QRCodeModal = ({ data, onClose, isOpen }: QRCodeModalProps) => {
   const dataUrl = useMemo(() => createURL(data), [data]);

@@ -35,6 +35,7 @@ export const PrintPage = () => {
             sx={{
               '@media print': {
                 padding: '0',
+                backgroundColor: 'transparent',
               },
             }}
           >

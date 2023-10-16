@@ -13,8 +13,6 @@ export const GenerationPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState('');
 
-  console.log(!data?.length);
-
   return (
     <Container py={6}>
       <VStack align="stretch" gap="6">
